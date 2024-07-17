@@ -3,6 +3,17 @@ from datetime import date
 import os
 import sqlite3
 
+# начало работы с БД
+def start_db():
+    db = sqlite3.connect('Tasks.db')
+    c = db.cursor()
+    return db, c
+
+# окончание работы с БД
+def end_db(db):
+    db.commit()
+    db.close()
+
 def new_task():
     os.system('cls')
     print('Выход - 0')
@@ -55,6 +66,15 @@ def main():
         print('Неверный запрос!')
         sleep(2)
         main()
+        
+def else_time():
+    birth_date = date(2006, 4, 1)  # год месяц число
+    death_day = date(2066, 4, 1)
+    today = date.today()
+    delta = today - birth_date
+    else_days = death_day - today
+    print("Вы живете уже:", delta.days, "дней")
+    print("Вам осталось жить:", else_days.days, "дней")
 
 if __name__ == '__main__':
     main()
