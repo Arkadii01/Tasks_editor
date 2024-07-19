@@ -14,6 +14,7 @@ def end_db(db):
     db.commit()
     db.close()
 
+# создание новой задачи
 def new_task():
     os.system('cls')
     print('Выход - 0')
@@ -41,20 +42,32 @@ def new_task():
             elif end == '0':
                 main()
             else:
-                print(f'{name} {start} {end}')
+                # создание задачи
+                db, c = start_db()
+                c.execute('INSERT INTO Task VALUES ()').fetchall()
+                end_db(db)
 
+# создание имеющейся задачи
 def change_task():
-    pass
+    os.system('cls')
+    db, c = start_db()
+    end_db(db)
 
+# показ задачи (диаграмма Ганта, обычный список)
 def show_task():
-    pass
+    os.system('cls')
+    db, c = start_db()
+    end_db(db)
 
+# начальное окно
 def main():
     os.system('cls')
     print('Введите действие:')
     print('1. Создание новой задачи')
     print('2. Изменение задачи')
     print('3. Вывод задач')
+    print('4. Сколько осталось жить?')
+    print('5. Настройки')
     answer = input()
     if answer == '1':
         new_task()
@@ -62,19 +75,16 @@ def main():
         pass
     elif answer == '3':
         pass
+    elif answer == '4':
+        pass
+    elif answer == '5':
+        pass
     else:
         print('Неверный запрос!')
         sleep(2)
         main()
         
-def else_time():
-    birth_date = date(2006, 4, 1)  # год месяц число
-    death_day = date(2066, 4, 1)
-    today = date.today()
-    delta = today - birth_date
-    else_days = death_day - today
-    print("Вы живете уже:", delta.days, "дней")
-    print("Вам осталось жить:", else_days.days, "дней")
+
 
 if __name__ == '__main__':
     main()
